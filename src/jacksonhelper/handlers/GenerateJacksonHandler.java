@@ -29,7 +29,7 @@ public class GenerateJacksonHandler extends AbstractHandler {
 			"\t%3$s(%2$s) {%1$s" +
 			"%4$s%1$s" +
 			"\t}%1$s";
-	private static final String CONSTRUCTOR_PARAMETER_TEMPLATE = "@JsonProperty(\"%2$s\") %1$s %2$s";
+	private static final String CONSTRUCTOR_PARAMETER_TEMPLATE = "@JsonProperty(value =\"%2$s\", required = false) %1$s %2$s";
 	private static final String CONSTRUCTOR_FIELD_ASSIGNMENT_TEMPLATE = "\t\tthis.%1$s = %1$s;";
 	// 1 type
 	// 2 name capitalized

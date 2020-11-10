@@ -21,4 +21,11 @@
         </command>
       </menuContribution>
    </extension>
+   <extension point="org.eclipse.ui.bindings">
+   	<key
+	  sequence="F10"
+	  commandId="Jackson-Helper.commands.GenerateJackson"
+	  schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+	  contextId="org.eclipse.ui.contexts.window" />
+   </extension>
 </plugin>
