@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/jackson-helper_1.0.0.202011092239" id="jackson_helper" version="1.0.0"/>
+   <feature url="features/jackson_helper_feature_1.0.0.jar" id="jackson_helper_feature" version="1.0.0" os="linux,macosx,win32">
+      <category name="jackson-helper"/>
+   </feature>
+   <category-def name="jackson-helper" label="Jackson Helper"/>
 </site>
