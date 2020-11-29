@@ -97,8 +97,11 @@ public class GenerateJacksonHandler extends AbstractHandler {
 				String name = typeName[1].replaceAll(";", "");
 				params.add(String.format(CONSTRUCTOR_PARAMETER_TEMPLATE, fieldType, name));
 				assignments.add(String.format(CONSTRUCTOR_FIELD_ASSIGNMENT_TEMPLATE, name));
-				setters.add(String
-						.format(SETTER_TEMPLATE, fieldType, name.substring(0, 1).toUpperCase() + name.substring(1), lineEndings, name));
+				String capitalizedName = name.substring(0, 1).toUpperCase() + name.substring(1);
+				if (!contents.contains("get" + capitalizedName + "()")) {
+					setters.add(String
+							.format(SETTER_TEMPLATE, fieldType, capitalizedName, lineEndings, name));
+				}
 			}
 		}
 
