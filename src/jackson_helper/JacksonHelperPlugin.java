@@ -1,23 +1,29 @@
 package jackson_helper;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUIPlugin {
+public class JacksonHelperPlugin extends AbstractUIPlugin {
+
+	public static final String CUSTOM_TYPES_PREFERENCE = "json_types";
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "jackson-helper"; //$NON-NLS-1$
 
 	// The shared instance
-	private static Activator plugin;
-	
+	private static JacksonHelperPlugin plugin;
+
 	/**
 	 * The constructor
 	 */
-	public Activator() {
+	public JacksonHelperPlugin() {
 	}
 
 	@Override
@@ -37,8 +43,16 @@ public class Activator extends AbstractUIPlugin {
 	 *
 	 * @return the shared instance
 	 */
-	public static Activator getDefault() {
+	public static JacksonHelperPlugin getDefault() {
 		return plugin;
+	}
+
+	public List<String> getCustomTypesPreference() {
+		return Arrays.asList(getPreferenceStore().getString(CUSTOM_TYPES_PREFERENCE).split("\n"));
+	}
+
+	public void setCustomTypesPreference(List<String> elements) {
+		getPreferenceStore().setValue(CUSTOM_TYPES_PREFERENCE, elements.stream().collect(Collectors.joining("\n")));
 	}
 
 }

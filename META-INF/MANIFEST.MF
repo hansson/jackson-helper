@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Jackson-helper
 Bundle-SymbolicName: jackson-helper;singleton:=true
 Bundle-Version: 1.2.0
-Bundle-Activator: jackson_helper.Activator
+Bundle-Activator: jackson_helper.JacksonHelperPlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime, 
  org.eclipse.core.resources,

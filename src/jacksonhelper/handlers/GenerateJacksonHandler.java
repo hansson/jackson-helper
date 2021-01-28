@@ -30,13 +30,13 @@ public class GenerateJacksonHandler extends AbstractHandler {
 			"\t%3$s(%2$s) {%1$s" +
 			"%4$s%1$s" +
 			"\t}%1$s";
-	private static final String CONSTRUCTOR_PARAMETER_TEMPLATE = "@JsonProperty(value =\"%2$s\", required = false) %1$s %2$s";
+	private static final String CONSTRUCTOR_PARAMETER_TEMPLATE = "@JsonProperty(value =\"%2$s\", required = true) %1$s %2$s";
 	private static final String CONSTRUCTOR_FIELD_ASSIGNMENT_TEMPLATE = "\t\tthis.%1$s = %1$s;";
 	// 1 type
 	// 2 name capitalized
 	// 3 line-endings
 	// 4 name
-	private static final String GETTER_TEMPLATE = "\tpublic %1$s get%2$s() {%3$s\t\treturn this.%4$s;%3$s\t}";
+	private static final String GETTER_TEMPLATE = "\tpublic %1$s get%2$s() {%3$s\t\treturn %4$s;%3$s\t}";
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -97,7 +97,7 @@ public class GenerateJacksonHandler extends AbstractHandler {
 			String line = lines.get(i);
 			if (line.startsWith(FIELD_PREFIX)) {
 				lastFieldLine = i;
-				String[] typeName = line.substring(15).split(" ");
+				String[] typeName = line.substring(FIELD_PREFIX.length()).split(" ");
 				String fieldType = typeName[0];
 				String name = typeName[1].replaceAll(";", "");
 				fields.add(fieldType + " " + name);
