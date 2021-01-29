@@ -2,6 +2,7 @@ package jackson_helper;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -48,7 +49,8 @@ public class JacksonHelperPlugin extends AbstractUIPlugin {
 	}
 
 	public List<String> getCustomTypesPreference() {
-		return Arrays.asList(getPreferenceStore().getString(CUSTOM_TYPES_PREFERENCE).split("\n"));
+		return Arrays.asList(getPreferenceStore().getString(CUSTOM_TYPES_PREFERENCE).split("\n")).stream()
+				.filter(Predicate.not(String::isEmpty)).collect(Collectors.toList());
 	}
 
 	public void setCustomTypesPreference(List<String> elements) {

@@ -71,7 +71,7 @@ public class CopyJsonHandler extends AbstractHandler {
 		String result = "{\n\t";
 		result += fields.entrySet().stream().map(entry -> {
 			if (isCustomType(entry.getValue())) {
-				return "\"" + entry.getKey() + "\": \"" + customTypeValue(entry.getValue()) + "\"";
+				return "\"" + entry.getKey() + "\": " + customTypeValue(entry.getValue()) + "";
 			}
 
 			if (isNumber(entry.getValue())) {
