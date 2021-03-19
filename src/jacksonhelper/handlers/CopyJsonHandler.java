@@ -78,6 +78,10 @@ public class CopyJsonHandler extends AbstractHandler {
 				return "\"" + entry.getKey() + "\": 0";
 			}
 
+			if (isBoolean(entry.getValue())) {
+				return "\"" + entry.getKey() + "\": false";
+			}
+
 			if (isString(entry.getValue())) {
 				return "\"" + entry.getKey() + "\": \"\"";
 			}
@@ -113,6 +117,10 @@ public class CopyJsonHandler extends AbstractHandler {
 	private boolean isCustomType(String value) {
 		return JacksonHelperPlugin.getDefault().getCustomTypesPreference().stream().map(s -> s.split(" = ")[0])
 				.anyMatch(customType -> customType.equals(value));
+	}
+
+	private boolean isBoolean(String value) {
+		return value.equals("boolean") || value.equals("Boolean");
 	}
 
 	private boolean isDate(String value) {
